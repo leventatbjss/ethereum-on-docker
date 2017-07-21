@@ -9,7 +9,7 @@ if [ "$1" == "bash" ]; then
 fi
 
 # replace vars
-if [[ ! -z $GEN_NONCE ]]; then
+if [ ! -z $GEN_NONCE ]; then
     echo "Generating genesis.nonce from arguments..."
     sed "s/\${GEN_NONCE}/$GEN_NONCE/g" -i /opt/genesis.json
 fi
@@ -26,9 +26,9 @@ if [ "$CHAIN_TYPE" == "private" ]; then
       geth --datadir "$DATA_DIR" init /opt/genesis.json
   fi
   GEN_ARGS="--datadir $DATA_DIR"
-  [[ ! -z $NET_ID ]] && GEN_ARGS="$GEN_ARGS --networkid=$NET_ID"
-#  [[ ! -z $MY_IP ]] && GEN_ARGS="$GEN_ARGS --nat=extip:$MY_IP"
-  [[ ! -z $BOOTNODE_URL ]] && GEN_ARGS="--bootnodes=$BOOTNODE_URL $GEN_ARGS"
+  [ ! -z $NET_ID ] && GEN_ARGS="$GEN_ARGS --networkid=$NET_ID"
+#  [ ! -z $MY_IP ] && GEN_ARGS="$GEN_ARGS --nat=extip:$MY_IP"
+  [ ! -z $BOOTNODE_URL ] && GEN_ARGS="--bootnodes=$BOOTNODE_URL $GEN_ARGS"
 fi
 
 if [ "$RUN_BOOTNODE" == "true" ]; then
